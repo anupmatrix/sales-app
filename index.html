@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="salesApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="salesApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="salesApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="salesApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Sales App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Vendor/html5-boilerplate/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Vendor/html5-boilerplate/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="Vendor/html5-boilerplate/css/main.css">
+    <link rel="stylesheet" href="app.css">
+    <script src="Vendor/html5-boilerplate/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#">Project name</a></div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#!/sales">Sales</a></li>
+                    <li><a href="#!/repair">Repair</a></li>
+                    <li><a href="#!/report">Report</a></li>
+                    <li><a href="#!/view1">view1</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+    
+  <div ng-view style="margin-top:50px;"></div>
+  <!--<div>Angular seed app: v<span app-version></span> <br> -->
+</div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="Vendor/angular/angular.min.js"></script>
+  <script src="Vendor/angular/angular-route.min.js"></script>
+  <script src="Vendor/angular/ui-bootstrap-tpls-2.5.0.min.js"></script>
+  <script src="Vendor/angular/smart-table.min.js"></script>
+
+  <script src="app.js"></script>
+  <script src="view1/view1.js"></script>
+  <script src="view2/view2.js"></script>
+  <script src="sales/sales.js"></script>
+  <script src="repair/repair.js"></script>
+  <script src="report/report.js"></script>
+
+  <script type="text/ng-template" id="custom-datepicker.html">
+    <div class="form-inline enhanced-datepicker">
+        <label>
+            <input
+                type="text"
+                id="{{id}}"
+                name="{{name}}"
+                ng-model="ngModel"
+                datepicker-popup="{{popup}}"
+                datepicker-options="{{options}}"
+                date-disabled="{{dateDisabled}}"
+                min="{{min}}"
+                max="{{max}}"
+                open="opened"
+                ng-pattern="/^(?:[1-9]|1\d|2\d|3[0-1]) (?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec) (?:1|2)(?:\d{3})$/gim"/>
+            <span class="btn"><i class="icon-calendar"></i></span>
+        </label>
+    </div>
+</script>
+  
+  <script src="components/date/date.js"></script>
+  <script src="components/date/date-directive.js"></script>
+  
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+</body>
+</html>

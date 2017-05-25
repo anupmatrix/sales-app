@@ -1,0 +1,319 @@
+<style>
+.nav-tabs{
+  background-color:#efefef;
+}
+.tab-content{
+    background-color:#f1ff1;
+    border-bottom:1px solid #ddd;
+    border-left:1px solid #ddd;
+    border-right:1px solid #ddd;
+}
+.nav-tabs > li > a:hover{
+    border: medium none;
+    border-radius: 0;
+    color:#000;
+}
+.nav-tabs {
+    background-color: #efefef !important;
+}
+
+.nav>li>a {
+    background-color: #cccc !important;
+    color: #000;
+}
+</style>
+<form class="form-horizontal" name="salesForm">
+<fieldset class="customer-section">
+ <legend class="customer-section">Customer details</legend>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="cust-name">Name:</label>
+                <div class="col-sm-8">
+                    <!--<input ng-model="customerName" type="text" class="form-control" id="cust-name" placeholder="Enter customer name"/> <br/>-->
+                    <input type="text" ng-model="customerDetails.name" placeholder="search customer" 
+                    uib-typeahead="customer_detail as (customer_detail.name + ' ## ' + customer_detail.phone + ' ## ' + customer_detail.address) for customer_detail in customerList($viewValue)" 
+                    typeahead-loading="loadingLocations" 
+                    typeahead-no-results="noResults" 
+                    class="form-control" aria-autocomplete="list" 
+                    aria-expanded="false" aria-owns="typeahead-81-4942"
+                    typeahead-on-select="selectCustomerFrmList($item)"
+                    typeahead-min-length="3"
+                    id="cust-name"
+                    autofocus
+                    />    
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="cust-phone">Phone No:</label>
+                <div class="col-sm-8">
+                    <input ng-model="customerDetails.phone" type="text" class="form-control" id="cust-phone" placeholder="Enter customer Phone Number">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group"><label class="control-label col-sm-2" for="cust-address">Address:</label>
+                <div class="col-sm-8"><textarea ng-model="customerDetails.address" class="form-control" id="cust-address" placeholder="Enter customer Address"></textarea></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="cust-sales-date">Date: {{opened}}</label>
+                <div class="col-md-10">
+                    <p class="input-group">
+                     <input
+                            class="form-control"
+                            type="date"
+                            id="cust-sales-date"
+                            name="salesDate"
+                            ng-model="salesDate"
+                            popup="d MMM yyyy"
+                            options="dateOptions"
+                            opened="opened"
+                            my-datepicker/>              
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+</fieldset>
+
+<fieldset class="product-section">
+ <legend class="product-section">Select Product</legend>
+    <div class="center-block" style="width:95%; margin:0 auto">
+     <div class="row">
+      <div class="form-group col-sm-2">
+        <div class="col-sm-12">
+            <label for="current-product-name">Name</label>
+            <input type="text" ng-model="curentProduct.name" placeholder="Select Brand" 
+            uib-typeahead="item as (item.name + ' ### ' + item.model + ' ### ' + item.sn + ' ### ' + item.price) for item in productList($viewValue, 'NAME')" 
+            typeahead-loading="loadingLocations"  typeahead-no-results="noResults" 
+            class="form-control" aria-autocomplete="list" 
+            aria-expanded="false" aria-owns="typeahead-81-4942"
+            typeahead-on-select="selectProductFrmList($item, 'NAME')"
+            typeahead-min-length="3" ng-enter="addProduct()" 
+            id="current-product-name"
+            />    
+            
+        </div>
+      </div>
+      <div class="form-group col-sm-2 ">
+      <div class="col-sm-12">
+        <label for="current-product-model-number">Model Number</label>
+            <input type="text" ng-model="curentProduct.model" placeholder="Select Model Number" 
+            uib-typeahead="item as (item.name + ' ### ' + item.model + ' ### ' + item.sn + ' ### ' + item.price) for item in productList($viewValue, 'MODEL')" 
+            typeahead-loading="loadingLocations"  typeahead-no-results="noResults" 
+            class="form-control" aria-autocomplete="list" 
+            aria-expanded="false" aria-owns="typeahead-81-4942"
+            typeahead-on-select="selectProductFrmList($item, 'MODEL')"
+            typeahead-min-length="3"  ng-enter="addProduct()" 
+            id="current-product-model-number"
+            />    
+        
+       </div> 
+      </div>
+      <div class="form-group col-sm-2 ">
+      <div class="col-sm-12">
+        <label for="current-product-serial-number">Serial Number</label>
+            <input type="text" ng-model="curentProduct.sn" placeholder="Select Serial No" 
+            uib-typeahead="item as (item.name + ' ### ' + item.model + ' ### ' + item.sn + ' ### ' + item.price) for item in productList($viewValue, 'SN')"             
+            typeahead-loading="loadingLocations"  typeahead-no-results="noResults" 
+            class="form-control" aria-autocomplete="list" 
+            aria-expanded="false" aria-owns="typeahead-81-4942"
+            typeahead-on-select="selectProductFrmList($item, 'SN')"
+            typeahead-min-length="3" ng-enter="addProduct()" 
+            id="current-product-serial-number"
+            />    
+
+      </div>  
+      </div>
+      <div class="form-group col-sm-2 ">
+      <div class="col-sm-12">
+        <label for="current-product-quantity">Quantity</label>
+            <input type="text" class="form-control" ng-model="curentProduct.quantity" id="current-product-quantity" placeholder="Item Quantity" ng-enter="addProduct()"  />
+      </div>  
+      </div>
+      <div class="form-group col-sm-1 ">
+      <div class="form-group col-sm-12">
+        <label for="current-product-price">Price</label>
+            <input type="text" class="form-control" id="current-product-price" ng-model="curentProduct.price" placeholder="Quantity" ng-enter="addProduct()"  />
+       </div> 
+      </div>
+      <div class="form-group col-sm-1 ">
+      <div>
+            <label for="current-product-taxType">Tax Type</label>
+            <select id="current-product-taxType" ng-model="curentProduct.taxType" class="form-control" ng-change="onTaxChange()">
+                <option ng-repeat="x in taxTypes" value="{{x.name}}">{{x.name}}({{x.value}}%)</option>
+            </select>
+      </div>  
+      </div>
+      <div class="form-group col-sm-1 ">
+      <div class="col-sm-12">
+        <label for="current-product-add">.</label>
+            <button id="current-product-add" type="button" class="form-control btn btn-sm btn-info" ng-click="addProduct()">Add</button>
+      </div>  
+      </div>
+    </div> 
+  </div>  
+ 
+</fieldset>
+
+<fieldset class="product-list-section" ng-if="selectedProducts.length >0">
+ <legend class="product-list-section">Product List</legend>
+    <div class="center-block" style="width:97%;margin:0 auto">
+        <table st-table="selectedProducts" class="table table-striped">
+            <thead>
+            <tr style="background-color:#f5f2f0">
+                <th>Particulars</th>
+                <th>serial No</th>
+                <th>Qty</th>
+                <th>Rate</th>
+                <th>Tax Type</th>
+                <th>Tax Amount</th>
+                <th colspan="2">Total Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in selectedProducts">
+                <td>{{row.name}}</td>
+                <td>{{row.sn}}</td>
+                <td>{{row.quantity}}</td>
+                <td>{{row.totalPrice.toFixed(2)}}</td>
+                <td>{{row.taxType}} ({{row.taxValue}}%)</td>
+                <td>{{row.taxAmmount.toFixed(2)}}</td>
+                <td>{{row.grandTotal.toFixed(2)}}</td>
+            <td>
+                <button type="button" ng-click="removeRow(row)" class="btn btn-sm btn-danger">
+                    <i class="glyphicon glyphicon-remove-circle"></i>
+                </button>
+            </td>                
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr style="background-color:#f5f2f0">
+                <th colspan="3"></th>
+                <th colspan="2">{{productTotal.totalPrice.toFixed(2)}}</th>
+                <th>{{productTotal.taxAmmount.toFixed(2)}}</th>
+                <th colspan="2">{{productTotal.grandTotal.toFixed(2)}}</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>  
+</fieldset>
+<fieldset class="payment-information" ng-if="selectedProducts.length>0">
+    <legend class="sales-operation-section">Payment Info</legend>
+    <div style="width:90%; margin:0 auto">
+    <div class="form-group row">
+        
+        <div class="col-xs-2">
+            <label for="paymentInfoPaymentMode">Payment Mode</label>
+            <select ng-model="paymentInfo.paymentMode" class="form-control" id="paymentInfoPaymentMode">
+                <option ng-repeat="payMode in paymentInfo.paymentModes" value="{{payMode.value}}">{{payMode.name}}</option>
+            </select>
+        </div>
+        
+        <div class="col-xs-10">
+                <div class="row" ng-show="paymentInfo.paymentMode === 'cash' ">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <br/>
+                            <label class="control-label col-sm-2" for="payment-cash-ammount">Cash Ammount:</label>
+                            <div class="col-sm-8">
+                                <input ng-model="paymentInfo.cash.amount" type="text" class="form-control" id="payment-cash-ammount" 
+                                placeholder="Cash Ammount">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="row" ng-show="paymentInfo.paymentMode === 'cheq' ">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="cheque-amount">Amount:</label>
+                            <div class="col-sm-8">
+                                <input ng-model="paymentInfo.cheque.amount" type="text" class="form-control" 
+                                id="cheque-amount" placeholder="Enter amount"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="cheque-bank">Bank:</label>
+                            <div class="col-sm-8">
+                                <input ng-model="paymentInfo.cheque.bank" type="text" class="form-control" 
+                                id="cheque-bank" placeholder="Enter bank name"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="paymentInfo.paymentMode === 'cheq' ">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="cheque-chequeNo">Cheque No:</label>
+                            <div class="col-sm-8">
+                                <input ng-model="paymentInfo.cheque.chequeNo" type="text" 
+                                class="form-control" id="cheque-chequeNo" placeholder="Enter Cheque Number"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="cheque-chequeDate">Cheque Date:</label>
+                            <div class="col-sm-8">
+                                <input ng-model="paymentInfo.cheque.chequeDate" type="text" 
+                                class="form-control" id="cheque-chequeDate" placeholder="Enter Cheque Date"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="paymentInfo.paymentMode === 'card' ">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="card-amount">Amount:</label>
+                            <div class="col-sm-8">
+                                <input ng-model="paymentInfo.card.amount" type="text" class="form-control" 
+                                id="card-amount" placeholder="Enter amount"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="card-cardNumber">Card umber:</label>
+                            <div class="col-sm-8">
+                                <input ng-model="paymentInfo.card.cardNumber" type="text" 
+                                class="form-control" id="card-cardNumber" placeholder="E.g. 1234-4564-7891-1234"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>                    
+                <div class="row" ng-show="paymentInfo.paymentMode === 'card' ">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="card-cardNetwork">Card Network:</label>
+                            <div class="col-sm-8">
+                                <input ng-model="paymentInfo.card.cardNetwork" type="text" class="form-control" 
+                                id="card-cardNetwork" placeholder="E.g VISA, MasterCard .."/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>    
+    </div>  
+ </div>    
+</fieldset>
+
+<fieldset class="sales-operation-section" ng-if="selectedProducts.length>0">
+    <!--<legend class="sales-operation-section">Final Step</legend>-->
+    <div class="form-group" style="width:95%; margin:0 auto">
+        <button type="submit" class="btn btn-block btn-success" ng-click='performSalesOperation()'>Submit</button>
+    </div>    
+</fieldset>
+
+</form>

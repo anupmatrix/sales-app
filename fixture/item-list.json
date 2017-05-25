@@ -1,0 +1,59 @@
+{
+  "status": true,
+  "singleProductModelList": [
+    {
+      "id": 1,
+      "name": "CanonEOs450",
+      "model": "s70000",
+      "sn": "1001505887832",
+      "price": 15669,
+      "taxType": "VAT-1",
+      "taxRate": "13.5"
+    },
+    {
+      "id": 2,
+      "name": "NIKON",
+      "model": "ssd20000",
+      "sn": "1001505887832",
+      "price": 12899,
+      "taxType": "VAT-2",
+      "taxRate": "5.5"
+    },
+    {
+      "id": 3,
+      "name": "Canon",
+      "model": "s7000",
+      "sn": "X12312312IO",
+      "price": 1589,
+      "taxType": "VAT-3",
+      "taxRate": "8.5"
+    },
+    {
+      "id": 4,
+      "name": "Canon-1",
+      "model": "s7001",
+      "sn": "X99999",
+      "price": 5656,
+      "taxType": "VAT-3",
+      "taxRate": "8.5"
+    },
+    {
+      "id": 5,
+      "name": "Canon-2",
+      "model": "s7002",
+      "sn": "X99990",
+      "price": 29999,
+      "taxType": "VAT-1",
+      "taxRate": "13.5"
+    },
+    {
+      "id": 6,
+      "name": "Canon-3",
+      "model": "s7003",
+      "sn": "X99989",
+      "price": 19999,
+      "taxType": "VAT-1",
+      "taxRate": "13.5"
+    }
+  ]
+}

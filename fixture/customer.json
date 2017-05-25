@@ -1,0 +1,47 @@
+{
+  "status": true,
+  "customerServiceResponseList": [
+    {
+      "status": false,
+      "id": 1,
+      "name": "sachin",
+      "address": "pune kp road",
+      "phone": "9765896417"
+    },
+    {
+      "status": false,
+      "id": 2,
+      "name": "mohan",
+      "address": "pune DP road",
+      "phone": "8865896417"
+    },
+    {
+      "status": false,
+      "id": 3,
+      "name": "abdul",
+      "address": "pune-nashik highway near rahauntnagar",
+      "phone": "9876554332213"
+    },
+    {
+      "status": false,
+      "id": 4,
+      "name": "gabdullah",
+      "address": "nashik highway near rahauntnagar",
+      "phone": "932476554332213"
+    },
+    {
+      "status": false,
+      "id": 5,
+      "name": "chenchunkkas",
+      "address": "KP raoad Lulla nagar ear rahauntnagar",
+      "phone": "8976542398"
+    },
+    {
+      "status": false,
+      "id": 6,
+      "name": "tech bhai",
+      "address": "tech1 ka address nahi malum",
+      "phone": "87654433212"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+<input type="text" ng-model="modeldisplay" ng-KeyPress="da(modeldisplay)"  ng-keydown="selected=false"
+                style="width:100%;" ng-class="ajaxClass">
+                <div class="list-group table-condensed overlap" ng-hide="!modeldisplay.length || selected" style="width:100%">
+                    <a href="javascript:void();" class="list-group-item noTopBottomPad" ng-repeat="item in TypeAheadData|filter:model  track by $index"
+                       ng-click="handleSelection(item[retkey],item[displaykey])" style="cursor:pointer" 
+                       ng-class="{active:isCurrent($index)}" 
+                       ng-mouseenter="setCurrent($index)">
+                          {{item[title]}}<br />
+                         <i>{{item[subtitle]}} </i>
+                    </a> 
+                </div>
+                </input>
